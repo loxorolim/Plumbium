@@ -1,0 +1,17 @@
+﻿@model IEnumerable<PipelineViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    @foreach (PipelineViewModel item in Model)
+    {
+        <div class="col-md-4">
+            <div class="jumbotron">
+                <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                <p>@Html.DisplayFor(modelItem => item.CreationDate)</p>
+                <p>@Html.DisplayFor(modelItem => item.Guid)</p>
+            </div>
+        </div>
+    }
+</div>
