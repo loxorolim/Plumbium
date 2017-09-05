@@ -7,10 +7,22 @@
     @foreach (PipelineViewModel item in Model)
     {
         <div class="col-md-4">
-            <div class="jumbotron">
-                <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-                <p>@Html.DisplayFor(modelItem => item.CreationDate)</p>
-                <p>@Html.DisplayFor(modelItem => item.Guid)</p>
+            <div>
+                <h4 style="text-align: center">@Html.DisplayFor(modelItem => item.Guid)</h4>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                    <h6>@Html.DisplayFor(modelItem => item.CreationDate)</h6>
+                </div>
+                <div class="panel-body">
+                    <div style="text-align: center"> @Html.DisplayFor(modelItem => item.CurrentProgress) / @Html.DisplayFor(modelItem => item.TotalProgress) </div>
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" style="width: @Html.DisplayFor(modelItem => item.ProgressPercentage)%">
+                            @Html.DisplayFor(modelItem => item.ProgressPercentage)%
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     }
