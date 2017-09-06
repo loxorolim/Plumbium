@@ -1,10 +1,11 @@
 ﻿using MongoDB.Driver;
 using Plumbium.Persistence.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Plumbium.Persistence.Repository
 {
-    public class PipelineRepository : IRepository<PipelineEntity>
+    public class PipelineRepository : IRepository<PipelineEntity, Guid>
     {
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<PipelineEntity> _pipelineCollection;
@@ -14,6 +15,11 @@ namespace Plumbium.Persistence.Repository
             var client = new MongoClient();
             _database = client.GetDatabase("Teste");
             _pipelineCollection = _database.GetCollection<PipelineEntity>("PipelineCollection");
+        }
+
+        public void Delete(Guid identifier)
+        {
+            _pipelineCollection.DeleteOne(Builders<PipelineEntity>.Filter.Eq("Guid", identifier));
         }
 
         public IEnumerable<PipelineEntity> GetAll()

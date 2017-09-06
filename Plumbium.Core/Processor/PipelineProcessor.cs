@@ -9,19 +9,19 @@ namespace Plumbium.Core.Processor
 {
     public class PipelineProcessor : IPipelineProcessor
     {
-        private readonly IRepository<PipelineEntity> _pipelineRepository;
+        private readonly IRepository<PipelineEntity, Guid> _pipelineRepository;
 
-        public PipelineProcessor(IRepository<PipelineEntity> pipelineRepository)
+        public PipelineProcessor(IRepository<PipelineEntity, Guid> pipelineRepository)
         {
             _pipelineRepository = pipelineRepository;
         }
 
-        public Guid CreatePipeline()
+        public Guid CreatePipeline(string pipelineName)
         {
             Guid pipelineGuid = Guid.NewGuid();
             PipelineEntity pipelineEntity = new PipelineEntity()
             {
-                Name = "Teste",
+                Name = pipelineName,
                 CreationDate = DateTime.Now,
                 Guid = pipelineGuid
             };
@@ -29,6 +29,11 @@ namespace Plumbium.Core.Processor
             _pipelineRepository.Save(pipelineEntity);
 
             return pipelineGuid;
+        }
+
+        public void DeletePipeline(Guid pipelineGuid)
+        {
+            _pipelineRepository.Delete(pipelineGuid);
         }
 
         public IEnumerable<PipelineModel> GetAllPipelines()

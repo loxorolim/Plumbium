@@ -8,6 +8,7 @@ using Plumbium.Core.Processor;
 using Plumbium.Models;
 using Plumbium.Persistence.Entities;
 using Plumbium.Persistence.Repository;
+using System;
 
 namespace Plumbium
 {
@@ -30,7 +31,7 @@ namespace Plumbium
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddTransient<IRepository<PipelineEntity>, PipelineRepository>();
+            services.AddTransient<IRepository<PipelineEntity, Guid>, PipelineRepository>();
             services.AddTransient<IPipelineProcessor, PipelineProcessor>();
         }
 

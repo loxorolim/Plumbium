@@ -1,5 +1,3 @@
-using System;
-
 namespace Plumbium.Models
 {
     public class ErrorViewModel
