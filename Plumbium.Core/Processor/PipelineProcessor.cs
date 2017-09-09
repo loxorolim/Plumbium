@@ -16,12 +16,13 @@ namespace Plumbium.Core.Processor
             _pipelineRepository = pipelineRepository;
         }
 
-        public Guid CreatePipeline(string pipelineName)
+        public Guid CreatePipeline(string pipelineName, int totalProgress)
         {
             Guid pipelineGuid = Guid.NewGuid();
             PipelineEntity pipelineEntity = new PipelineEntity()
             {
                 Name = pipelineName,
+                TotalProgress = totalProgress,
                 CreationDate = DateTime.Now,
                 Guid = pipelineGuid
             };

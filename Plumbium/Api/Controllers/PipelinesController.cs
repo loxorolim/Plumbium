@@ -34,9 +34,9 @@ namespace Plumbium.Api.Controllers
 
         // POST api/pipelines
         [HttpPost]
-        public CreatePipelineResponse Post([FromBody] CreatePipelineContract createPipelineContract)
+        public CreatePipelineResponse Post([FromBody] CreatePipelineContract contract)
         {
-            Guid pipelineIdentifier = _pipelineProcessor.CreatePipeline(createPipelineContract.Name);
+            Guid pipelineIdentifier = _pipelineProcessor.CreatePipeline(contract.Name, contract.TotalProgress);
 
             return new CreatePipelineResponse()
             {
@@ -46,9 +46,9 @@ namespace Plumbium.Api.Controllers
 
         // PUT api/pipelines/5
         [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] UpdatePipelineProgressContract value)
+        public void Put(Guid id, [FromBody] UpdatePipelineProgressContract contract)
         {
-            _pipelineProcessor.UpdatePipeline(id, value.CurrentProgress);
+            _pipelineProcessor.UpdatePipeline(id, contract.CurrentProgress);
         }
 
         // DELETE api/pipelines/5
