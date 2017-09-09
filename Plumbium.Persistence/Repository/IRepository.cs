@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Plumbium.Persistence.Repository
 {
@@ -9,7 +8,7 @@ namespace Plumbium.Persistence.Repository
 
         void Delete(TIdentifier identifier);
 
-        void Update(Guid identifier);
+        void Update(TIdentifier identifier, TEntity entity);
 
         IEnumerable<TEntity> GetAll();
     }

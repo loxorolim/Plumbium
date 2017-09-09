@@ -34,7 +34,12 @@ namespace Plumbium.Core.Processor
 
         public void UpdatePipeline(Guid pipelineGuid, int currentProgress)
         {
-            _pipelineRepository.Update(pipelineGuid);
+            PipelineEntity pipelineEntity = new PipelineEntity()
+            {
+                CurrentProgress = currentProgress,
+            };
+
+            _pipelineRepository.Update(pipelineGuid, pipelineEntity);
         }
 
         public void DeletePipeline(Guid pipelineGuid)

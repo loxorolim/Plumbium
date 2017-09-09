@@ -24,10 +24,10 @@ namespace Plumbium.Persistence.Repository
             _pipelineCollection.DeleteOne(filter);
         }
 
-        public void Update(Guid identifier)
+        public void Update(Guid identifier, PipelineEntity newEntity)
         {
             FilterDefinition<PipelineEntity> filter = Builders<PipelineEntity>.Filter.Eq("Guid", identifier);
-            UpdateDefinition<PipelineEntity> update = Builders<PipelineEntity>.Update.Set("CurrentProgress", 10);
+            UpdateDefinition<PipelineEntity> update = Builders<PipelineEntity>.Update.Set("CurrentProgress", newEntity.CurrentProgress);
 
             _pipelineCollection.UpdateOne(filter, update);
         }
