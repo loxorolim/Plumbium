@@ -19,7 +19,17 @@ namespace Plumbium.Persistence.Repository
 
         public void Delete(Guid identifier)
         {
-            _pipelineCollection.DeleteOne(Builders<PipelineEntity>.Filter.Eq("Guid", identifier));
+            FilterDefinition<PipelineEntity> filter = Builders<PipelineEntity>.Filter.Eq("Guid", identifier);
+
+            _pipelineCollection.DeleteOne(filter);
+        }
+
+        public void Update(Guid identifier)
+        {
+            FilterDefinition<PipelineEntity> filter = Builders<PipelineEntity>.Filter.Eq("Guid", identifier);
+            UpdateDefinition<PipelineEntity> update = Builders<PipelineEntity>.Update.Set("CurrentProgress", 10);
+
+            _pipelineCollection.UpdateOne(filter, update);
         }
 
         public IEnumerable<PipelineEntity> GetAll()
@@ -31,5 +41,6 @@ namespace Plumbium.Persistence.Repository
         {
             _pipelineCollection.InsertOne(entity);
         }
+
     }
 }

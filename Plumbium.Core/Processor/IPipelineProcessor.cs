@@ -8,6 +8,7 @@ namespace Plumbium.Core.Processor
     {
         Guid CreatePipeline(string pipelineName);
         void DeletePipeline(Guid pipelineGuid);
+        void UpdatePipeline(Guid pipelineGuid, int currentProgress);
         IEnumerable<PipelineModel> GetAllPipelines();
     }
 }

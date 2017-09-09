@@ -46,8 +46,9 @@ namespace Plumbium.Api.Controllers
 
         // PUT api/pipelines/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(Guid id, [FromBody] UpdatePipelineProgressContract value)
         {
+            _pipelineProcessor.UpdatePipeline(id, value.CurrentProgress);
         }
 
         // DELETE api/pipelines/5

@@ -31,6 +31,11 @@ namespace Plumbium.Core.Processor
             return pipelineGuid;
         }
 
+        public void UpdatePipeline(Guid pipelineGuid, int currentProgress)
+        {
+            _pipelineRepository.Update(pipelineGuid);
+        }
+
         public void DeletePipeline(Guid pipelineGuid)
         {
             _pipelineRepository.Delete(pipelineGuid);
