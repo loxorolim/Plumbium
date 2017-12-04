@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Plumbium.Api.Contracts;
+using Plumbium.Core.Models;
 using Plumbium.Core.Processor;
+using Plumbium.Models;
 using System;
 using System.Collections.Generic;
 
@@ -20,9 +23,13 @@ namespace Plumbium.Api.Controllers
 
         // GET: api/pipelines
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<PipelineViewModel> Get()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<PipelineModel> pipelineModels = _pipelineProcessor.GetAllPipelines();
+
+            IEnumerable<PipelineViewModel> pipelineViewModels = Mapper.Map<IEnumerable<PipelineViewModel>>(pipelineModels);
+
+            return pipelineViewModels;
         }
 
         // GET api/pipelines/5

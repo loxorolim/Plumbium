@@ -7,6 +7,8 @@
     @foreach (PipelineViewModel item in Model)
     {
         <div class="col-md-4">
+            <div id="mountNode"></div>
+
             <div>
                 <h4 style="text-align: center">@Html.DisplayFor(modelItem => item.Guid)</h4>
             </div>
@@ -27,3 +29,4 @@
         </div>
     }
 </div>
+
