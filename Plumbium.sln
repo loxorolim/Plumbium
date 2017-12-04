@@ -3,11 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plumbium", "Plumbium\Plumbium.csproj", "{EE7BD049-CA2D-4E38-9DB3-3609138A5D1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plumbium", "Plumbium\Plumbium.csproj", "{EE7BD049-CA2D-4E38-9DB3-3609138A5D1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plumbium.Core", "Plumbium.Core\Plumbium.Core.csproj", "{1BD02861-DA3A-4019-9E02-31818DD0FCDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plumbium.Core", "Plumbium.Core\Plumbium.Core.csproj", "{1BD02861-DA3A-4019-9E02-31818DD0FCDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plumbium.Persistence", "Plumbium.Persistence\Plumbium.Persistence.csproj", "{B49CEAA9-EA78-4B84-BFEA-6146456A4DD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plumbium.Persistence", "Plumbium.Persistence\Plumbium.Persistence.csproj", "{B49CEAA9-EA78-4B84-BFEA-6146456A4DD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{B60E8E38-5880-46D3-BEA5-730D243C47F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Business Logic", "2 - Business Logic", "{70D86CC3-6784-47EF-B8C2-E79B894EF140}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Data Access", "3 - Data Access", "{4EBB03B4-6609-48AF-AF4E-EC0BB8E1687E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plumbium.WebApi", "Plumbium.WebApi\Plumbium.WebApi.csproj", "{56151984-1613-4619-95C1-5A01DB7C138A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +35,19 @@ Global
 		{B49CEAA9-EA78-4B84-BFEA-6146456A4DD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B49CEAA9-EA78-4B84-BFEA-6146456A4DD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B49CEAA9-EA78-4B84-BFEA-6146456A4DD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56151984-1613-4619-95C1-5A01DB7C138A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56151984-1613-4619-95C1-5A01DB7C138A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56151984-1613-4619-95C1-5A01DB7C138A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56151984-1613-4619-95C1-5A01DB7C138A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE7BD049-CA2D-4E38-9DB3-3609138A5D1A} = {B60E8E38-5880-46D3-BEA5-730D243C47F2}
+		{1BD02861-DA3A-4019-9E02-31818DD0FCDC} = {70D86CC3-6784-47EF-B8C2-E79B894EF140}
+		{B49CEAA9-EA78-4B84-BFEA-6146456A4DD4} = {4EBB03B4-6609-48AF-AF4E-EC0BB8E1687E}
+		{56151984-1613-4619-95C1-5A01DB7C138A} = {B60E8E38-5880-46D3-BEA5-730D243C47F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FE50E8F0-B6AD-4F0F-B0C4-A44B17B51E74}

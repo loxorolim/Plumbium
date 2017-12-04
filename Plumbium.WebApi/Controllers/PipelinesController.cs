@@ -1,15 +1,13 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Plumbium.Api.Contracts;
+﻿using Microsoft.AspNetCore.Mvc;
 using Plumbium.Core.Models;
 using Plumbium.Core.Processor;
-using Plumbium.Models;
+using Plumbium.WebApi.Contracts;
 using System;
 using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Plumbium.Api.Controllers
+namespace Plumbium.WebApi.Controllers
 {
     [Route("api/[controller]")]
     public class PipelinesController : Controller
@@ -23,13 +21,11 @@ namespace Plumbium.Api.Controllers
 
         // GET: api/pipelines
         [HttpGet]
-        public IEnumerable<PipelineViewModel> Get()
+        public IEnumerable<PipelineModel> Get()
         {
             IEnumerable<PipelineModel> pipelineModels = _pipelineProcessor.GetAllPipelines();
 
-            IEnumerable<PipelineViewModel> pipelineViewModels = Mapper.Map<IEnumerable<PipelineViewModel>>(pipelineModels);
-
-            return pipelineViewModels;
+            return pipelineModels;
         }
 
         // GET api/pipelines/5

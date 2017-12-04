@@ -1,4 +1,4 @@
-﻿namespace Plumbium.Api.Contracts
+﻿namespace Plumbium.WebApi.Contracts
 {
     public class UpdatePipelineProgressContract
     {
