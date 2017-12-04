@@ -10,10 +10,16 @@ namespace Plumbium.Core.Processor
     public class PipelineProcessor : IPipelineProcessor
     {
         private readonly IRepository<PipelineEntity, Guid> _pipelineRepository;
+        private readonly IMapper _autoMapper;
 
         public PipelineProcessor(IRepository<PipelineEntity, Guid> pipelineRepository)
         {
             _pipelineRepository = pipelineRepository;
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<PipelineEntity, PipelineModel>());
+
+            _autoMapper = config.CreateMapper();
+
         }
 
         public Guid CreatePipeline(string pipelineName, int totalProgress)
@@ -51,7 +57,7 @@ namespace Plumbium.Core.Processor
         {
             IEnumerable<PipelineEntity> pipelineEntities = _pipelineRepository.GetAll();
 
-            IEnumerable<PipelineModel> pipelineModels = Mapper.Map<IEnumerable<PipelineModel>>(pipelineEntities);
+            IEnumerable<PipelineModel> pipelineModels = _autoMapper.Map<IEnumerable<PipelineModel>>(pipelineEntities);
 
             return pipelineModels;
         }

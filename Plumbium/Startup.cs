@@ -22,7 +22,7 @@ namespace Plumbium
 
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<PipelineEntity, PipelineModel>();
+
                 cfg.CreateMap<PipelineModel, PipelineViewModel>();
             });
         }

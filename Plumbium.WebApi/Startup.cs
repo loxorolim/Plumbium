@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Plumbium.Core.Processor;
 using Plumbium.Persistence.Entities;
 using Plumbium.Persistence.Repository;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 
 namespace Plumbium.WebApi
@@ -23,6 +24,14 @@ namespace Plumbium.WebApi
         {
             services.AddMvc();
 
+
+
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+
             services.AddTransient<IPipelineProcessor, PipelineProcessor>();
             services.AddTransient<IRepository<PipelineEntity, Guid>, PipelineRepository>();
 
@@ -35,6 +44,15 @@ namespace Plumbium.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseMvc();
         }
