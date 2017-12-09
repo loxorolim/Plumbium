@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
 using Plumbium.Core.Interfaces.Repositories;
 using Plumbium.Core.Models;
 using System;
@@ -13,9 +14,18 @@ namespace Plumbium.Persistence.Repository
 
         public PipelineRepository()
         {
+
+            BsonClassMap.RegisterClassMap<Pipeline>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIgnoreExtraElements(true);
+            });
+
             var client = new MongoClient();
             _database = client.GetDatabase("Teste");
             _pipelineCollection = _database.GetCollection<Pipeline>("PipelineCollection");
+
+
         }
 
         public void Delete(Guid identifier)
