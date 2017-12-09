@@ -1,4 +1,4 @@
-﻿using Plumbium.Core.Models;
+﻿using Plumbium.Domain.Models;
 using System;
 using System.Collections.Generic;
 

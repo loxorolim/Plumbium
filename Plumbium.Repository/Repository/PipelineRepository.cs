@@ -1,11 +1,11 @@
 ﻿using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using Plumbium.Core.Interfaces.Repositories;
-using Plumbium.Core.Models;
+using Plumbium.Domain.Models;
 using System;
 using System.Collections.Generic;
 
-namespace Plumbium.Persistence.Repository
+namespace Plumbium.Repository.Repository
 {
     public class PipelineRepository : IRepository<Pipeline, Guid>
     {

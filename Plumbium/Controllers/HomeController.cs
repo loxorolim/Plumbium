@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Plumbium.Core.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using Plumbium.Core.Processor;
+using Plumbium.Domain.Models;
 using Plumbium.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,11 +18,9 @@ namespace Plumbium.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Pipeline> Pipelines = _pipelineProcessor.GetAllPipelines();
+            IEnumerable<Pipeline> pipelines = _pipelineProcessor.GetAllPipelines();
 
-            IEnumerable<PipelineViewModel> pipelineViewModels = Mapper.Map<IEnumerable<PipelineViewModel>>(Pipelines);
-
-            return View(pipelineViewModels);
+            return View(pipelines);
         }
 
         public IActionResult About()

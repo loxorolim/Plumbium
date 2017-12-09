@@ -1,5 +1,5 @@
 ﻿using Plumbium.Core.Interfaces.Repositories;
-using Plumbium.Core.Models;
+using Plumbium.Domain.Models;
 using System;
 using System.Collections.Generic;
 
@@ -17,7 +17,7 @@ namespace Plumbium.Core.Processor
         public Guid CreatePipeline(string pipelineName, int totalProgress)
         {
             Guid pipelineGuid = Guid.NewGuid();
-            Pipeline Pipeline = new Pipeline()
+            Pipeline pipeline = new Pipeline()
             {
                 Name = pipelineName,
                 TotalProgress = totalProgress,
@@ -25,7 +25,7 @@ namespace Plumbium.Core.Processor
                 Guid = pipelineGuid
             };
 
-            _pipelineRepository.Save(Pipeline);
+            _pipelineRepository.Save(pipeline);
 
             return pipelineGuid;
         }
