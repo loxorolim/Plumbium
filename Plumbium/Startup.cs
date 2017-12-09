@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson.Serialization;
 using Plumbium.Core.Interfaces.Repositories;
 using Plumbium.Core.Processor;
 using Plumbium.Domain.Models;
@@ -36,7 +37,16 @@ namespace Plumbium
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
 
+
+            //Repository
+            BsonClassMap.RegisterClassMap<Pipeline>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIgnoreExtraElements(true);
+            });
             services.AddTransient<IRepository<Pipeline, Guid>, PipelineRepository>();
+
+            //Core
             services.AddTransient<IPipelineProcessor, PipelineProcessor>();
 
 
