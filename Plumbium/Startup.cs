@@ -1,13 +1,11 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Plumbium.Core.Interfaces.Repositories;
 using Plumbium.Core.Models;
 using Plumbium.Core.Processor;
-using Plumbium.Models;
-using Plumbium.Persistence.Entities;
 using Plumbium.Persistence.Repository;
 using React.AspNet;
 using System;
@@ -19,12 +17,6 @@ namespace Plumbium
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            Mapper.Initialize(cfg =>
-            {
-
-                cfg.CreateMap<PipelineModel, PipelineViewModel>();
-            });
         }
 
         public IConfiguration Configuration { get; }
@@ -36,7 +28,7 @@ namespace Plumbium
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
 
-            services.AddTransient<IRepository<PipelineEntity, Guid>, PipelineRepository>();
+            services.AddTransient<IRepository<Pipeline, Guid>, PipelineRepository>();
             services.AddTransient<IPipelineProcessor, PipelineProcessor>();
 
 

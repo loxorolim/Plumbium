@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="React.AspNet" Version="3.1.0" />
   </ItemGroup>
@@ -15,7 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Plumbium.Api\Plumbium.Api.csproj" />
     <ProjectReference Include="..\Plumbium.Core\Plumbium.Core.csproj" />
+    <ProjectReference Include="..\Plumbium.Domain\Plumbium.Domain.csproj" />
+    <ProjectReference Include="..\Plumbium.Mvc\Plumbium.Mvc.csproj" />
+    <ProjectReference Include="..\Plumbium.Repository\Plumbium.Repository.csproj" />
   </ItemGroup>
 
 </Project>

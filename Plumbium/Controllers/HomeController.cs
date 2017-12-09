@@ -19,9 +19,9 @@ namespace Plumbium.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<PipelineModel> pipelineModels = _pipelineProcessor.GetAllPipelines();
+            IEnumerable<Pipeline> Pipelines = _pipelineProcessor.GetAllPipelines();
 
-            IEnumerable<PipelineViewModel> pipelineViewModels = Mapper.Map<IEnumerable<PipelineViewModel>>(pipelineModels);
+            IEnumerable<PipelineViewModel> pipelineViewModels = Mapper.Map<IEnumerable<PipelineViewModel>>(Pipelines);
 
             return View(pipelineViewModels);
         }

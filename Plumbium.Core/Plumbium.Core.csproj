@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Plumbium.Persistence\Plumbium.Persistence.csproj" />
+    <ProjectReference Include="..\Plumbium.Domain\Plumbium.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

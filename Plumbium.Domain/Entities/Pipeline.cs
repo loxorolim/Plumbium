@@ -2,7 +2,7 @@
 
 namespace Plumbium.Core.Models
 {
-    public class PipelineModel
+    public class Pipeline
     {
         public Guid Guid { get; set; }
         public string Name { get; set; }

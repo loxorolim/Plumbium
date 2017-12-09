@@ -21,11 +21,11 @@ namespace Plumbium.WebApi.Controllers
 
         // GET: api/pipelines
         [HttpGet]
-        public IEnumerable<PipelineModel> Get()
+        public IEnumerable<Pipeline> Get()
         {
-            IEnumerable<PipelineModel> pipelineModels = _pipelineProcessor.GetAllPipelines();
+            IEnumerable<Pipeline> pipelines = _pipelineProcessor.GetAllPipelines();
 
-            return pipelineModels;
+            return pipelines;
         }
 
         // GET api/pipelines/5
