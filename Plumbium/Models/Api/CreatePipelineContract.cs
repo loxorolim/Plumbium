@@ -1,4 +1,4 @@
-﻿namespace Plumbium.WebApi.Contracts
+﻿namespace Plumbium.Models.Api
 {
     public class CreatePipelineContract
     {

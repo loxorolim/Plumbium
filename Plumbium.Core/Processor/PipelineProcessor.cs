@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using Plumbium.Core.Models;
-using Plumbium.Persistence.Entities;
-using Plumbium.Persistence.Repository;
+﻿using Plumbium.Core.Interfaces.Repositories;
+using Plumbium.Domain.Models;
 using System;
 using System.Collections.Generic;
 
@@ -9,23 +7,17 @@ namespace Plumbium.Core.Processor
 {
     public class PipelineProcessor : IPipelineProcessor
     {
-        private readonly IRepository<PipelineEntity, Guid> _pipelineRepository;
-        private readonly IMapper _autoMapper;
+        private readonly IRepository<Pipeline, Guid> _pipelineRepository;
 
-        public PipelineProcessor(IRepository<PipelineEntity, Guid> pipelineRepository)
+        public PipelineProcessor(IRepository<Pipeline, Guid> pipelineRepository)
         {
             _pipelineRepository = pipelineRepository;
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<PipelineEntity, PipelineModel>());
-
-            _autoMapper = config.CreateMapper();
-
         }
 
         public Guid CreatePipeline(string pipelineName, int totalProgress)
         {
             Guid pipelineGuid = Guid.NewGuid();
-            PipelineEntity pipelineEntity = new PipelineEntity()
+            Pipeline pipeline = new Pipeline()
             {
                 Name = pipelineName,
                 TotalProgress = totalProgress,
@@ -33,19 +25,19 @@ namespace Plumbium.Core.Processor
                 Guid = pipelineGuid
             };
 
-            _pipelineRepository.Save(pipelineEntity);
+            _pipelineRepository.Save(pipeline);
 
             return pipelineGuid;
         }
 
         public void UpdatePipeline(Guid pipelineGuid, int currentProgress)
         {
-            PipelineEntity pipelineEntity = new PipelineEntity()
+            Pipeline Pipeline = new Pipeline()
             {
                 CurrentProgress = currentProgress,
             };
 
-            _pipelineRepository.Update(pipelineGuid, pipelineEntity);
+            _pipelineRepository.Update(pipelineGuid, Pipeline);
         }
 
         public void DeletePipeline(Guid pipelineGuid)
@@ -53,13 +45,9 @@ namespace Plumbium.Core.Processor
             _pipelineRepository.Delete(pipelineGuid);
         }
 
-        public IEnumerable<PipelineModel> GetAllPipelines()
+        public IEnumerable<Pipeline> GetAllPipelines()
         {
-            IEnumerable<PipelineEntity> pipelineEntities = _pipelineRepository.GetAll();
-
-            IEnumerable<PipelineModel> pipelineModels = _autoMapper.Map<IEnumerable<PipelineModel>>(pipelineEntities);
-
-            return pipelineModels;
+            return _pipelineRepository.GetAll();
         }
     }
 }

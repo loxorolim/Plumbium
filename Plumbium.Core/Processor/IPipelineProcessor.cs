@@ -1,4 +1,4 @@
-﻿using Plumbium.Core.Models;
+﻿using Plumbium.Domain.Models;
 using System;
 using System.Collections.Generic;
 
@@ -9,6 +9,6 @@ namespace Plumbium.Core.Processor
         Guid CreatePipeline(string pipelineName, int totalProgress);
         void DeletePipeline(Guid pipelineGuid);
         void UpdatePipeline(Guid pipelineGuid, int currentProgress);
-        IEnumerable<PipelineModel> GetAllPipelines();
+        IEnumerable<Pipeline> GetAllPipelines();
     }
 }

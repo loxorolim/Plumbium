@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Plumbium.Persistence.Repository
+namespace Plumbium.Core.Interfaces.Repositories
 {
     public interface IRepository<TEntity, TIdentifier>
     {

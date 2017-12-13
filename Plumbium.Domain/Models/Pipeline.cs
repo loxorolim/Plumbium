@@ -1,16 +1,15 @@
-﻿using MongoDB.Bson;
-using System;
+﻿using System;
 
-namespace Plumbium.Persistence.Entities
+namespace Plumbium.Domain.Models
 {
-    public class PipelineEntity
+    public class Pipeline
     {
-        public ObjectId Id { get; set; }
         public Guid Guid { get; set; }
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public int TotalProgress { get; set; }
         public int CurrentProgress { get; set; }
 
+        public int ProgressPercentage => TotalProgress == 0 ? 0 : (CurrentProgress * 100 / TotalProgress);
     }
 }
