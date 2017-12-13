@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Plumbium.Core.Models;
 using Plumbium.Core.Processor;
-using Plumbium.WebApi.Contracts;
+using Plumbium.Domain.Models;
+using Plumbium.Models.Api;
 using System;
 using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Plumbium.WebApi.Controllers
+namespace Plumbium.Controllers.Api
 {
     [Route("api/[controller]")]
     public class PipelinesController : Controller
@@ -21,11 +21,11 @@ namespace Plumbium.WebApi.Controllers
 
         // GET: api/pipelines
         [HttpGet]
-        public IEnumerable<PipelineModel> Get()
+        public IEnumerable<Pipeline> Get()
         {
-            IEnumerable<PipelineModel> pipelineModels = _pipelineProcessor.GetAllPipelines();
+            IEnumerable<Pipeline> pipelines = _pipelineProcessor.GetAllPipelines();
 
-            return pipelineModels;
+            return pipelines;
         }
 
         // GET api/pipelines/5

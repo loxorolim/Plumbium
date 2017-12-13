@@ -1,15 +1,15 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Plumbium.Core.Models;
+using MongoDB.Bson.Serialization;
+using Plumbium.Core.Interfaces.Repositories;
 using Plumbium.Core.Processor;
-using Plumbium.Models;
-using Plumbium.Persistence.Entities;
-using Plumbium.Persistence.Repository;
+using Plumbium.Domain.Models;
+using Plumbium.Repository.Repository;
 using React.AspNet;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 
 namespace Plumbium
@@ -19,12 +19,6 @@ namespace Plumbium
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            Mapper.Initialize(cfg =>
-            {
-
-                cfg.CreateMap<PipelineModel, PipelineViewModel>();
-            });
         }
 
         public IConfiguration Configuration { get; }
@@ -33,10 +27,26 @@ namespace Plumbium
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
 
-            services.AddTransient<IRepository<PipelineEntity, Guid>, PipelineRepository>();
+
+            //Repository
+            BsonClassMap.RegisterClassMap<Pipeline>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIgnoreExtraElements(true);
+            });
+            services.AddTransient<IRepository<Pipeline, Guid>, PipelineRepository>();
+
+            //Core
             services.AddTransient<IPipelineProcessor, PipelineProcessor>();
 
 
@@ -77,6 +87,16 @@ namespace Plumbium
             });
 
             app.UseStaticFiles();
+
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseMvc(routes =>
             {

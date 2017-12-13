@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Plumbium.Persistence\Plumbium.Persistence.csproj" />
+    <ProjectReference Include="..\Plumbium.Domain\Plumbium.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

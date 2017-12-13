@@ -5,9 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Bson" Version="2.4.4" />
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
-    <PackageReference Include="MongoDB.Driver.Core" Version="2.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Plumbium.Core\Plumbium.Core.csproj" />
+    <ProjectReference Include="..\Plumbium.Domain\Plumbium.Domain.csproj" />
   </ItemGroup>
 
 </Project>
