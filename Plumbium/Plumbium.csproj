@@ -16,10 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Plumbium.Api\Plumbium.Api.csproj" />
     <ProjectReference Include="..\Plumbium.Core\Plumbium.Core.csproj" />
     <ProjectReference Include="..\Plumbium.Domain\Plumbium.Domain.csproj" />
-    <ProjectReference Include="..\Plumbium.Mvc\Plumbium.Mvc.csproj" />
     <ProjectReference Include="..\Plumbium.Repository\Plumbium.Repository.csproj" />
   </ItemGroup>
 
